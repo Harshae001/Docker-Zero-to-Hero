@@ -1,5 +1,3 @@
-
-
 FROM ubuntu
 
 WORKDIR /app
@@ -14,7 +12,7 @@ RUN apt-get update && \
 
 WORKDIR /app/devops
 
-CMD ["venv/bin/python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["/bin/bash", "-c", "source venv/bin/activate && python manage.py runserver 0.0.0.0:8000"]
 
 
 
