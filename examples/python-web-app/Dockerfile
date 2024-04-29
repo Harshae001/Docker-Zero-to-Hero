@@ -8,12 +8,13 @@ COPY requirements.txt /app
 COPY devops /app
 
 RUN apt-get update && \
-    apt-get install -y python3 python3-pip && \
-    pip3 install -r requirements.txt
+    apt-get install -y python3 python3-venv && \
+    python3 -m venv venv && \
+    /bin/bash -c "source venv/bin/activate && pip install -r requirements.txt"
 
 WORKDIR /app/devops
 
-CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["venv/bin/python", "manage.py", "runserver", "0.0.0.0:8000"]
 
 
 
